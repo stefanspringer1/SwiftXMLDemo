@@ -26,7 +26,7 @@ CommandLine.arguments.dropFirst().forEach { argument in
         if argument == "-w" {
             waitAfterRead = true
         }
-        if argument == "-p" {
+        else if argument == "-p" {
             printXML = true
         }
         else {
