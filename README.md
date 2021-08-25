@@ -4,9 +4,19 @@ This is a demo for the [SwiftXML](https://github.com/stefanspringer1/SwiftXML) l
 
 Build with `swift build -c release`.
 
-Give the path to an XML file as argument to the program and it prints the document to standard output.
+Run (in `.build/release`): `./SwiftXMLDemo <source> [<target>] [-w] [-p]`
 
-Give a second path as second argument to the program and the XML document will be written to this second path.
+Arguments:
+
+1st path argumten: Give the path to an XML file as argument to the program and it prints the document to standard output.
+
+2nd path argument: Give a second path as second argument to the program and the XML document will be written to this second path.
+
+`-w`: Aftr reading the document, wait for press of the RETURN key. (This can be used to see the memory consumption for the XML tree.)
+
+`-p`: Print the document to standard output.
+
+The total time will be displayed at the end, if `-w` is not set.
 
 This demo is published under the Apache License 2.0. For questions or remarks see my contact information on [my website](https://stefanspringer.com).
 

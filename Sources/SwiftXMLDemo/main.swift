@@ -14,13 +14,24 @@ let start = DispatchTime.now()
 var sourcePath: String? = nil
 var targetPath: String? = nil
 
-if CommandLine.arguments.count > 3 {
+if CommandLine.arguments.count > 4 {
     print("too many arguments"); exit(1)
 }
 
+var waitAfterRead = false
+var printXML = false
+
 CommandLine.arguments.dropFirst().forEach { argument in
     if argument.hasPrefix("-") {
-        print("unkown argument \"\(argument)\""); exit(1)
+        if argument == "-w" {
+            waitAfterRead = true
+        }
+        if argument == "-p" {
+            printXML = true
+        }
+        else {
+            print("unkown argument \"\(argument)\""); exit(1)
+        }
     }
     else if sourcePath == nil {
         sourcePath = argument
@@ -64,11 +75,14 @@ class MyXMLFormatter: SwiftXML.DefaultXMLFormatter {
 if let theSourcePath = sourcePath {
     do {
         let document = try parseXML(path: theSourcePath, internalEntityResolver: MyInternalEntityResolver())
+        if waitAfterRead {
+            print("XML is read, press enter to write"); _ = readLine()
+        }
+        if printXML {
+            document.echo(formatter: MyXMLFormatter())
+        }
         if let theTargetPath = targetPath {
             document.write(toFile: theTargetPath, formatter: MyXMLFormatter())
-        }
-        else {
-            document.echo(formatter: MyXMLFormatter())
         }
     }
     catch {
@@ -79,7 +93,9 @@ else {
     print("nothing to do")
 }
 
-let end = DispatchTime.now()
-let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
-let timeInterval = Double(nanoTime) / 1_000_000_000
-print("program ended after \(timeInterval) s")
+if !waitAfterRead {
+    let end = DispatchTime.now()
+    let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
+    let timeInterval = Double(nanoTime) / 1_000_000_000
+    print("program ended after \(timeInterval) s")
+}
