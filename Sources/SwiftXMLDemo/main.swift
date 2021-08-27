@@ -52,23 +52,23 @@ class MyInternalEntityResolver: InternalEntityResolver {
     }
 }
 
-class MyXMLProduction: SwiftXML.DefaultXMLProduction {
+class MyXMLFormatter: SwiftXML.DefaultXMLFormatter {
     
-    required init(file: FileHandle) {
-        super.init(file: file)
-        linebreak = "\r\n"
+    override init() {
+        super.init()
+        setLinebreak(linebreak: "\r\n")
     }
     
     override public func sortedDeclarationsInInternalSubset(document: SwiftXML.XMLDocument) -> [XMLDeclarationInInternalSubset] {
         return document.declarationsInInternalSubset
     }
     
-    override public func attributeValue(value: String) {
-        write(SwiftXMLInterfaces.escapeAll(value))
+    override public func attributeValue(value: String) -> String {
+        return SwiftXMLInterfaces.escapeAll(value)
     }
     
-    override public func text(text: String) {
-        write(SwiftXMLInterfaces.escapeAll(text))
+    override public func text(text: String) -> String {
+        return SwiftXMLInterfaces.escapeAll(text)
     }
 }
 
@@ -79,10 +79,10 @@ if let theSourcePath = sourcePath {
             print("XML is read, press enter to write"); _ = readLine()
         }
         if printXML {
-            document.write(productionType: MyXMLProduction.self)
+            document.echo(formatter: MyXMLFormatter())
         }
         if let theTargetPath = targetPath {
-            document.write(toPath: theTargetPath, productionType: MyXMLProduction.self)
+            document.write(toFile: theTargetPath, formatter: MyXMLFormatter())
         }
     }
     catch {
