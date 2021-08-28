@@ -46,8 +46,8 @@ You can then set the privilege in the `gpedit.msc` tool under Computer Configura
 
 Note that group policies might forbid setting the above privilege. You might then have to speak with your IT apartment.
 
-1. Install Visual Studio (get it from [https://visualstudio.microsoft.com](https://visualstudio.microsoft.com)).
-   
+1. Install Visual Studio (version 2019 or 2022, get it from [https://visualstudio.microsoft.com](https://visualstudio.microsoft.com)) with at least the components `MSVC v142`, `Windows Universal C Runtime`, `Windows 10 SDK `, and `Git for Windows` (just select the newset versions where sdeveral versions are available). When Git is installed by the Visual Studio Installer, the `less` program (which will be needed) is available in `%ProgramFiles%\Git\usr\bin`, and that path should then be added to the PATH environment variable. (Note that you then can check out any repository inside the x64 Native Tools Command Prompt of Visual Studio by the command `git clone my-repository-url` and update a repository via `git pull`.)
+
 2. Install the Swift toolchain (get it from [https://swift.org/download](https://swift.org/download)). Swift will be installed to `C:\Library`. In a newly opened comamnd line windows, the command `swift -version` should then print the Swift version.
 
 3. You will have to make the Windows SDK accessable to Swift. Open the `x64 Native Tools for VS2019 Command Prompt` with Administrator rights (via the context menu of the entry for `x64 Native Tools for VS2019 Command Prompt` in the start menu) and inside it, execute the following commands. (Please also see the documentation [https://swift.org/getting-started/](https://swift.org/getting-started/) in case something has changed.)
