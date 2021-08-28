@@ -24,7 +24,7 @@ This demo is published under the Apache License 2.0. For questions or remarks se
 
 _First we describe how to install Swift on Windows._
 
-1. The Swift Package Manager uses symbolic links, but Microsoft has decided that symbolic links might be harmful (see [there](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766301(v=ws.10)) under "Create symbolic links"). You need the SE_CREATE_SYMBOLIC_LINK privilege in Windows to use symbolic links, you can set this privilege for the user using the `gpedit.msc` tool (execute as Administrator). (Note that other security policies for your computer might overwrite this setting.) If you have the Home edition of of Windows, you first have to get this tool from Microsoft using the following script (open the command line window as Administrator):
+1. The Swift Package Manager uses symbolic links, but Microsoft has decided that symbolic links might be harmful (see [there](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766301(v=ws.10)) under "Create symbolic links"). You can test if you can set symbolic links with the command `mklink newfile oldfile`, creating a symbolic link file named `newfile` pointing to `oldfile`. If this command is successful, everything is OK. Else, you can try to activate the Deverloper Mode in the Windows settings and then restart the computer. You should then be able to create symbolic links (test with the mentioned command again). If not, you need to set the SE_CREATE_SYMBOLIC_LINK privilege using the `gpedit.msc` tool (execute as Administrator). (Note that other security policies for your computer might overwrite this setting.) If you have the Home edition of of Windows, you first have to get this tool from Microsoft using the following script (open the command line window as Administrator):
 
 ```Batch
 @echo off 
@@ -40,13 +40,15 @@ for /f %%i in ('findstr /i . List.txt 2^>nul') do dism /online /norestart /add-p
 pause
 ```
 
-You can then set the privilege in the `gpedit.msc` tool under Computer Configuration / Windows Settings / Security Settings / Local Policies / User Rights Assignment (use a right-click for the listed setting and choose Properties / Enhanced / Search to add yourself as user). Then restart ypour computer. As a test, try to set a link via `mklink LinkFile TargetFile`.
+You can then set the privilege in the `gpedit.msc` tool under Computer Configuration / Windows Settings / Security Settings / Local Policies / User Rights Assignment (use a right-click for the listed setting and choose Properties / Enhanced / Search to add yourself as user). Then restart your computer.
 
-2. Install Visual Studio (get it from [https://visualstudio.microsoft.com](https://visualstudio.microsoft.com)).
+Note that group policies might forbid setting the above privilege. You might then have to speak with your IT apartment.
+
+1. Install Visual Studio (get it from [https://visualstudio.microsoft.com](https://visualstudio.microsoft.com)).
    
-3. Install the Swift toolchain (get it from [https://swift.org/download](https://swift.org/download)). Swift will be installed to `C:\Library`. In a newly opened comamnd line windows, the command `swift -version` should then print the Swift version.
+2. Install the Swift toolchain (get it from [https://swift.org/download](https://swift.org/download)). Swift will be installed to `C:\Library`. In a newly opened comamnd line windows, the command `swift -version` should then print the Swift version.
 
-4. You will have to make the Windows SDK accessable to Swift. Open the `x64 Native Tools for VS2019 Command Prompt` with Administrator rights (via the context menu of the entry for `x64 Native Tools for VS2019 Command Prompt` in the start menu) and inside it, execute the following commands. (Please also see the documentation [https://swift.org/getting-started/](https://swift.org/getting-started/) in case something has changed.)
+3. You will have to make the Windows SDK accessable to Swift. Open the `x64 Native Tools for VS2019 Command Prompt` with Administrator rights (via the context menu of the entry for `x64 Native Tools for VS2019 Command Prompt` in the start menu) and inside it, execute the following commands. (Please also see the documentation [https://swift.org/getting-started/](https://swift.org/getting-started/) in case something has changed.)
 
 ```batch
 copy %SDKROOT%\usr\share\ucrt.modulemap "%UniversalCRTSdkDir%\Include\%UCRTVersion%\ucrt\module.modulemap"
