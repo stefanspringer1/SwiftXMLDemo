@@ -2,7 +2,9 @@
 
 This is a demo for the [SwiftXML](https://github.com/stefanspringer1/SwiftXML) library.
 
-After installing Swift as explained below, build it with `swift build -c release` inside the x64 Native Tools Command Prompt of Visual Studio and from within the project directory. The resulting executable can be found in the subdirectory `.build/release`. It needs some libraries to be executed, the accordings paths are set after mentioned installation.
+It can be built by the command `swift build -c release`. The resulting executable can then be found in the subdirectory `.build/release`. 
+
+On Windows, after installing Swift as explained below, build it inside the x64 Native Tools Command Prompt of Visual Studio and from within the project directory. It needs some libraries to be executed, the accordings paths are set after mentioned installation.
 
 Run it with: `./SwiftXMLDemo <source> [<target>] [-w] [-p]`
 
