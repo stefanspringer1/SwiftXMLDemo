@@ -2,9 +2,9 @@
 
 This is a demo for the [SwiftXML](https://github.com/stefanspringer1/SwiftXML) library.
 
-Build with `swift build -c release`.
+After installing Swift as explained below, build it with `swift build -c release` inside the x64 Native Tools Command Prompt of Visual Studio and from within the project directory. The resulting executable can be found in the subdirectory `.build/release`. It needs some libraries to be executed, the accordings paths are set after mentioned installation.
 
-Run (in `.build/release`): `./SwiftXMLDemo <source> [<target>] [-w] [-p]`
+Run it with: `./SwiftXMLDemo <source> [<target>] [-w] [-p]`
 
 Arguments:
 
@@ -24,7 +24,7 @@ This demo is published under the Apache License 2.0. For questions or remarks se
 
 _First we describe how to install Swift on Windows._
 
-1. The Swift Package Manager uses symbolic links, but Microsoft has decided that symbolic links might be harmful (see [there](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766301(v=ws.10)) under "Create symbolic links"). You can test if you can set symbolic links with the command `mklink newfile oldfile`, creating a symbolic link file named `newfile` pointing to `oldfile`. If this command is successful, everything is OK. Else, you can try to activate the Deverloper Mode in the Windows settings and then restart the computer. You should then be able to create symbolic links (test with the mentioned command again). If not, you need to set the SE_CREATE_SYMBOLIC_LINK privilege using the `gpedit.msc` tool (execute as Administrator). (Note that other security policies for your computer might overwrite this setting.) If you have the Home edition of of Windows, you first have to get this tool from Microsoft using the following script (open the command line window as Administrator):
+1. The Swift Package Manager uses symbolic links, but Microsoft has decided that symbolic links might be harmful (see [there](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766301(v=ws.10)) under "Create symbolic links"). You can test if you can set symbolic links with the command `mklink newfile oldfile`, creating a symbolic link file named `newfile` pointing to `oldfile`. If this command is successful, everything is OK. Else, you can try to activate the Deverloper Mode in the Windows settings and then restart the computer. You should then be able to create symbolic links (test with the mentioned command again). If not, you need to set the SE_CREATE_SYMBOLIC_LINK privilege using the `gpedit.msc` tool (start it via the context menu of the Windows Explorer as Administrator). (Note that other security policies for your computer might overwrite this setting.) If you have the Home edition of of Windows, you first have to get this tool from Microsoft using the following script (open the command line window as Administrator):
 
 ```Batch
 @echo off 
